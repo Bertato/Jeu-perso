@@ -78,6 +78,7 @@ int main(){
 			choix =0;
 			printf ("Vous vous rendez donc au centre du village\n");
 			printf ("Vous regardez le panneau et vous remarquez qu'il y a 3 quetes\n");
+			printf ("\n");
 			printf ("La premiere parle d'aller chercher l'animal de companie d'une veille dame (1)\n");
 			printf ("Cela vous rapportera 5 pieces d'or\n");
 			printf ("La deuxieme demande de chasser un ours de sa caverne (2)\n");
@@ -109,8 +110,23 @@ int main(){
 		if ( choix == 2 ){
 			choix =0;
 			printf ("Vous décidez de vous ballader dans ville a la recherche de personnes a aider.\n");
+			printf ("Au loin vous voyez un enfant se faire frapper par 3 adultes\n");
 			printf ("\n");
+			printf ("L'aider (1)\n");
+			printf ("Continuer votre chemin (2)\n");
 			printf ("\n");
+			scanf ("%d",&choix);
+			printf ("\n");
+			
+			if ( choix == 1 ){
+			choix =0;
+			
+			}
+			
+			if ( choix == 2 ){
+			choix =0;
+			
+			}
 		}
 
 		
