@@ -23,7 +23,7 @@ int rangUp (){
 int main(){
 // ------------------------------------------------------------------INRODUCTION ----------------------------------------------------------------------
 
-	printf ("Vous faites partie d'un clan de mercenaire.\n");
+	printf ("Vous faites partie d'un clan de mercenaires.\n");
 	printf ("Ce dernier, meme s'il est repute pour faire le sale boulot,\n");
 	printf ("peut aussi faire des petits services pour les villages voisins \n");
 	printf ("Vous etes donc un mercenaire junior qui va devoir faire ses preuves pour rejoindre les grands du clan \n");
@@ -82,7 +82,8 @@ int main(){
 		
 		printf ("Une fois arrive au village, vous devez trouver des quetes a faire pour prouver votre valeur.\n");
 		printf ("Vous savez qu'il y a toujours un panneau central au milieu du village qui affiche les services que les gens demandent.\n");
-		printf ("Voulez vous vous y rendre (1) ou preferez vous vous balader dans la ville? (2)\n");
+		printf ("S'y rendre(1)\n"); 
+		printf ("Se balader dans la ville(2)\n");
 		printf ("\n");
 		scanf ("%d",&choix);
 		printf ("\n");
@@ -106,17 +107,84 @@ int main(){
 			
 			if ( choix == 1 ){
 				choix =0;
+				printf("Vous vous rendez en direction de la riviere car c'est la qu'il a ete apercu la derniere fois\n");
+				printf("Une fois sur les lieux, vous apercevez des traces de pas qui ont l'air quand meme tres grosse\n");
+				printf("Vous suivez les traces\n");
+				printf("Cela vous amene face a un tigre qui doit faire 2 fois votre taille\n");
+				printf("A votre vu l'animal se rue sur vous\n");
+				printf("Vous defendre (1)\n");
+				printf("Vous echapper (2) \n");
+				printf ("\n");
+				scanf ("%d",&choix);
+				printf ("\n");
 				
+				if ( choix == 1 && dague == 1){
+					choix =0;
+					printf("Le tigre vous saute dessus et vous le poignardez juste avant qu'il ne vous dévore\n");
+					printf("Malheureusement quelqu'un vous a vu et va voir la veille dame pour tout lui raconter\n");
+					printf("Votre reputation est salie, vous ne serez jamais un mercenaire.\n");
+				}
+				
+				if ( choix == 1 && dague == 0){
+					choix =0;
+					printf("Le tigre vous saute dessus et vous dévore\n");
+					mort();
+				}
+				if ( choix == 2 ){
+					choix =0;
+					printf ("Malheureusement les tigres ont une vitesse de pointe de 65km/h");
+					printf("Le tigre vous saute dessus et vous dévore\n");
+					mort();
+					printf("Au moins vous aurez appris la vitesse de pointe d'un tigre.\n");
+				}
 			}
 			
 			if ( choix == 2 ){
 				choix =0;
+				printf("Vous vous rendez dans les montagnes en direction de la caverne de l'ours.\n");
+				printf("A votre arrive, l'ours dort\n");
+				printf("Le tuer dans son sommeil (1)\n");
+				printf("Lui faire peur pour le faire fuire (2)\n");
+				printf ("\n");
+				scanf ("%d",&choix);
+				printf ("\n");
 				
 			}
 			
 			if ( choix == 3 ){
 				choix =0;
+				printf ("Vous decidez de vous rendre dans la foret\n");
+				printf ("Des que vous mettez un pied dans la foret, une dizaine de brigants vous tombe dessus\n");
+				printf ("malheureusement vous n'avez pas la force pour les vaincre\n");
+				mort();
 				
+			}
+					
+			if ( choix == 1 && rang>3){
+				choix =0;
+				printf ("Vous decidez de vous rendre dans la foret\n");
+				printf ("Des que vous mettez un pied dans la foret, une dizaine de brigants vous tombe dessus\n");
+				printf ("Grace a vos experience passe, vous arrivez a gerer la situation\n");
+				printf ("Une fois que vous avez terrase tous les ennemis, vous remarquez que l'un des brigants est mieux vetu que les autres\n");
+				printf ("Ca doit etre le chef\n");
+				printf ("Voulez vous lui couper la tete ? \n");
+				printf ("Prendre la tete (1)\n");
+				printf ("Laisser la tete (2)\n");
+				printf ("\n");
+				scanf ("%d",&choix);
+				printf ("\n");
+				if ( choix == 1 ){
+					choix =0;
+					printf ("Vous lui coupez la tete et la ramenez au village\n");
+					teteBrigant = 1;
+					rangUp();
+				}
+				
+				if ( choix == 2 ){
+					choix =0;
+					printf ("Vous laissez le chef des brigants mort et rentrez au village\n");
+					rangUp();
+				}
 			}
 		}
 		
@@ -135,6 +203,7 @@ int main(){
 			choix =0;
 			printf ("Vous vous approchez en criant pour arreter les agresseurs\n");
 			printf ("En vous voyant arriver, ils decident de s'en prendre a vous.\n");
+			aiderEnfant = 1;
 				if ( dague == 0 ){
 					printf ("Vous vous engagez dans un combat qui semble complexe\n");
 					printf ("Pendant que vous tenez 2 des agresseurs, le troisieme vous frappe a la tete et vous assomme\n");
@@ -144,7 +213,7 @@ int main(){
 				if ( dague == 1 ){
 					printf ("Vous vous engagez dans un combat qui semble complexe\n");
 					printf ("Vous parvenez a couper au bras un des agresseurs grace a votre dague\n");
-					printf ("Les agresseurs sentent qu'ils ne feront pas le poids et décide de s'enfuirent.\n");
+					printf ("Les agresseurs sentent qu'ils ne feront pas le poids et décide de s'enfuire.\n");
 					printf ("\n");
 					printf ("Les poursuivre (1)\n");
 					printf ("Rester aupres de l'enfant (2)\n");
@@ -180,7 +249,7 @@ int main(){
 						printf ("\n");
 						if ( choix == 1 ){
 							choix =0;
-							printf ("Vous lui coupez la tete et la remenez au village\n");
+							printf ("Vous lui coupez la tete et la ramenez au village\n");
 							teteBrigant = 1;
 							rangUp();
 						}
@@ -194,22 +263,73 @@ int main(){
 					if ( choix == 2 ){
 						choix =0;
 						printf ("Vous restez aupres de l'enfant pendant que les 3 agresseurs s'en vont au loin en direction de la foret.\n");
-						printf ("Vous apprenez que l'enfant est le fils du marchant du village et qu'il vous fera de grosse reduction si vous y allez\n");
+						printf ("Vous apprenez que l'enfant est le fils du marchant du village et qu'il vous fera de grosses reductions si vous y allez\n");
 						printf ("L'enfant s'en va retrouver ses parents en vous remerciant.\n");
-						aiderEnfant = 1;
 						
 					}
 				}
-				
+			
 			}
 			
 			if ( choix == 2 ){
 			choix =0;
+			printf ("L'enfant se fait massacrer sous vos yeux\n");
+			printf ("Il laisse le corps du garcon sur le sol et partent en courant\n");
+			printf ("Les poursuivre (1)\n");
+			printf ("Les laisser (2)\n");
+			printf ("\n");
+			scanf ("%d",&choix);
+			printf ("\n");
 			
+				if ( choix == 1 ){
+						choix =0;
+						printf ("Vous commencez a les poursuivre\n");
+						printf ("Vous arrivez devant la foret et les 3 agresseurs s'y enfoncent sans hesiter.\n");
+						printf ("Des que vous mettez un pied dans la foret, une dizaine de brigants vous tombe dessus\n");
+						printf ("malheureusement vous n'avez pas la force pour les vaincre\n");
+						mort();
+						
+					}
+					
+				if ( choix == 1 && rang>3){
+					choix =0;
+					printf ("Vous commencez a les poursuivre\n");
+					printf ("Vous arrivez devant la foret et les 3 agresseurs s'y enfoncent sans hesiter.\n");
+					printf ("Des que vous mettez un pied dans la foret, une dizaine de brigants vous tombe dessus\n");
+					printf ("Grace a vos experience passe, vous arrivez a gerer la situation\n");
+					printf ("Une fois que vous avez terrase tous les ennemis, vous remarquez que l'un des brigants est mieux vetu que les autres\n");
+					printf ("Ca doit etre le chef\n");
+					printf ("Voulez vous lui couper la tete ? peut etre qu'il y avait une prime sur lui.\n");
+					printf ("Prendre la tete (1)\n");
+					printf ("Laisser la tete (2)\n");
+					printf ("\n");
+					scanf ("%d",&choix);
+					printf ("\n");
+					if ( choix == 1 ){
+						choix =0;
+						printf ("Vous lui coupez la tete et la ramenez au village\n");
+						teteBrigant = 1;
+						rangUp();
+					}
+					
+					if ( choix == 2 ){
+						choix =0;
+						printf ("Vous laissez le chef des brigants mort et rentrez au village\n");
+					}
+						
+					if ( choix == 2 ){
+						choix =0;
+						printf ("Vous les laissez partir\n");
+						printf ("Vous vous remettez en question après avoir vu se meurtre\n");
+						printf ("Vous n'avez pas bouge\n");
+						printf ("Vous n'etes visiblement pas pres pour l'aventure et la realite vous reviens en pleine vigure\n");
+						printf ("Peut etre que la prochaine fois vous ferez de meilleurs choix\n");
+					}
+				}
 			}
-		}
 
 		
+		}
 	}
 	
 	
