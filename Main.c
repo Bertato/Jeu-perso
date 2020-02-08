@@ -6,6 +6,19 @@ char nom[100];
 int po = 0;
 int dague = 0;
 int rang = 1;
+int teteBrigant = 0;
+int aiderEnfant =0;
+
+int mort (){
+	printf ("Vous vous etes surestime et vous etes malheureusement mort\n");
+	printf ("peut etre ferez vous de meilleurs choix dans une autre vie.\n");
+}
+
+int rangUp (){
+	printf ("Bravo vous avez augmente votre rang\n");
+	rang = rang + 1;
+	printf ("Vous etes desormais rang %d\n", rang);
+}
 
 int main(){
 // ------------------------------------------------------------------INRODUCTION ----------------------------------------------------------------------
@@ -69,7 +82,7 @@ int main(){
 		
 		printf ("Une fois arrive au village, vous devez trouver des quetes a faire pour prouver votre valeur.\n");
 		printf ("Vous savez qu'il y a toujours un panneau central au milieu du village qui affiche les services que les gens demandent.\n");
-		printf ("Voulez vous vous y rendre (1) ou preferez vous vous ballader dans la ville? (2)\n");
+		printf ("Voulez vous vous y rendre (1) ou preferez vous vous balader dans la ville? (2)\n");
 		printf ("\n");
 		scanf ("%d",&choix);
 		printf ("\n");
@@ -109,7 +122,7 @@ int main(){
 		
 		if ( choix == 2 ){
 			choix =0;
-			printf ("Vous décidez de vous ballader dans ville a la recherche de personnes a aider.\n");
+			printf ("Vous decidez de vous balader dans ville a la recherche de personnes a aider.\n");
 			printf ("Au loin vous voyez un enfant se faire frapper par 3 adultes\n");
 			printf ("\n");
 			printf ("L'aider (1)\n");
@@ -120,7 +133,74 @@ int main(){
 			
 			if ( choix == 1 ){
 			choix =0;
-			
+			printf ("Vous vous approchez en criant pour arreter les agresseurs\n");
+			printf ("En vous voyant arriver, ils decident de s'en prendre a vous.\n");
+				if ( dague == 0 ){
+					printf ("Vous vous engagez dans un combat qui semble complexe\n");
+					printf ("Pendant que vous tenez 2 des agresseurs, le troisieme vous frappe a la tete et vous assomme\n");
+					mort();
+				}
+				
+				if ( dague == 1 ){
+					printf ("Vous vous engagez dans un combat qui semble complexe\n");
+					printf ("Vous parvenez a couper au bras un des agresseurs grace a votre dague\n");
+					printf ("Les agresseurs sentent qu'ils ne feront pas le poids et décide de s'enfuirent.\n");
+					printf ("\n");
+					printf ("Les poursuivre (1)\n");
+					printf ("Rester aupres de l'enfant (2)\n");
+					printf ("\n");
+					scanf ("%d",&choix);
+					printf ("\n");
+					
+					if ( choix == 1 ){
+						choix =0;
+						printf ("Vous commencez a les poursuivre\n");
+						printf ("L'enfant vous remercie pendant que vous partez\n");
+						printf ("Vous arrivez devant la foret et les 3 agresseurs s'y enfoncent sans hesiter.\n");
+						printf ("Des que vous mettez un pied dans la foret, une dizaine de brigants vous tombe dessus\n");
+						printf ("malheureusement vous n'avez pas la force pour les vaincre\n");
+						mort();
+						
+					}
+					
+					if ( choix == 1 && rang>3){
+						choix =0;
+						printf ("Vous commencez a les poursuivre\n");
+						printf ("L'enfant vous remercie pendant que vous partez\n");
+						printf ("Vous arrivez devant la foret et les 3 agresseurs s'y enfoncent sans hesiter.\n");
+						printf ("Des que vous mettez un pied dans la foret, une dizaine de brigants vous tombe dessus\n");
+						printf ("Grace a vos experience passe, vous arrivez a gerer la situation\n");
+						printf ("Une fois que vous avez terrase tous les ennemis, vous remarquez que l'un des brigants est mieux vetu que les autres\n");
+						printf ("Ca doit etre le chef\n");
+						printf ("Voulez vous lui couper la tete ? peut etre qu'il y avait une prime sur lui.\n");
+						printf ("Prendre la tete (1)\n");
+						printf ("Laisser la tete (2)\n");
+						printf ("\n");
+						scanf ("%d",&choix);
+						printf ("\n");
+						if ( choix == 1 ){
+							choix =0;
+							printf ("Vous lui coupez la tete et la remenez au village\n");
+							teteBrigant = 1;
+							rangUp();
+						}
+						
+						if ( choix == 2 ){
+							choix =0;
+							printf ("Vous laissez le chef des brigants mort et rentrez au village\n");
+						}
+					}
+					
+					if ( choix == 2 ){
+						choix =0;
+						printf ("Vous restez aupres de l'enfant pendant que les 3 agresseurs s'en vont au loin en direction de la foret.\n");
+						printf ("Vous apprenez que l'enfant est le fils du marchant du village et qu'il vous fera de grosse reduction si vous y allez\n");
+						printf ("L'enfant s'en va retrouver ses parents en vous remerciant.\n");
+						aiderEnfant = 1;
+						
+					}
+				}
+				
 			}
 			
 			if ( choix == 2 ){
