@@ -8,6 +8,7 @@ int dague = 0;
 int rang = 1;
 int teteBrigant = 0;
 int aiderEnfant =0;
+int oursTue = 0;
 
 int mort (){
 	printf ("Vous vous etes surestime et vous etes malheureusement mort\n");
@@ -34,8 +35,8 @@ int main(){
 	printf ("Tres bien %s, maintenant que les presentations sont faites, partons a l'aventure\n",nom);
 	printf ("Si vous parvenez a passer au rang 5, vous parviendrez a rejoindre les mercenaires. \n");
 	
-	printf ("Vous avez %d pieces d'or sur vous\n", po);
-	printf ("Vous etes au rang %d\n", rang);
+	printf ("Vous avez %d pieces d'or sur vous\n",&po);
+	printf ("Vous etes au rang %d\n", &rang);
 	printf ("Dans quel village voulez vous commencer votre aventure?\n");
 	printf ("\n");
 	printf ("Run'ku est un village dans les montagnes a quelques jours de marche, (1)\n");
@@ -149,6 +150,31 @@ int main(){
 				scanf ("%d",&choix);
 				printf ("\n");
 				
+				if ( choix == 1 && dague == 0 ){
+				choix =0;
+				printf("Vous arrivez a tuer des ours a mains nus vous ?\n");
+				printf("L'ours brun est un animal pouvant atteindre 600kg\n");
+				mort();
+				printf("Au moins vous aurez appris le poids d'un ours brun.\n");
+				}
+				
+				if ( choix == 1 && dague == 1 ){
+				choix =0;
+				printf("Vous vous approchez discretement de l'animal et lui plantez votre dague dans la tete\n");
+				printf("Quel courage !\n");
+				rangUp();
+				oursTue = 1;
+				}
+				
+				if ( choix == 2 ){
+				choix =0;
+				printf("Vous poussez un crier bestial pour faire peur a l'animal endormi\n");
+				printf("L'ours est effraye et encore a moitie endormie\n");
+				printf("Malheureusement pour vous quand un animal a peur, il se defend souvent\n");
+				printf("L'animal vous attaque et vous terasse\n");
+				mort();
+				
+				}
 			}
 			
 			if ( choix == 3 ){
@@ -330,6 +356,49 @@ int main(){
 
 		
 		}
+	printf ("Vous etes de retour en ville\n");
+	if ( teteBrigant == 1){
+		printf ("vous etes accueillis par le chef du village\n");
+		printf ("Vous lui montrez la tete du brigant\n");
+		printf ("Le chef saute de joie et vous donne les 20 pieces d'or\n");
+		teteBrigant = 0;
+		po = po +20;
+		printf ("Vous avez %d pieces d'or sur vous\n",&po);
+	}
+	
+	if ( oursTue == 1){
+		printf ("vous etes accueillis par le chef du village\n");
+		printf ("Vous lui annoncez que l'ours n'embetera plus le village\n");
+		printf ("Le chef saute de joie et vous donne les 15 pieces d'or\n");
+		po = po +15;
+		printf ("Vous avez %d pieces d'or sur vous\n",&po);
+	}
+	printf ("Aller au centre ville a l'endroit des quetes (1)\n");
+	printf ("Aller voir le marchant (2)\n");
+	printf ("Partir de cette ville pour aller a une autre (3)\n");
+	printf ("\n");
+	scanf ("%d",&choix);
+	printf ("\n");
+	
+	if ( choix == 1 ){
+		choix =0;
+		printf ("Vous vous rendez donc au centre ville vers le panneau des quetes\n");
+
+	}
+	
+	if ( choix == 2 ){
+		choix =0;
+		printf ("Vous laissez le chef des brigants mort et rentrez au village\n");
+	}
+		
+	if ( choix == 3 ){
+		choix =0;
+		printf ("Vous les laissez partir\n");
+		printf ("Vous vous remettez en question après avoir vu se meurtre\n");
+		printf ("Vous n'avez pas bouge\n");
+		printf ("Vous n'etes visiblement pas pres pour l'aventure et la realite vous reviens en pleine vigure\n");
+		printf ("Peut etre que la prochaine fois vous ferez de meilleurs choix\n");
+	}
 	}
 	
 	
