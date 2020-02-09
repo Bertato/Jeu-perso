@@ -10,8 +10,7 @@ int rang = 1;
 
 
 // Objets
-int dague = 0;
-int shurikens = 0;
+int arme = 0;
 int vetementsAssassin = 0;
 int potion =0;
 
@@ -44,7 +43,7 @@ int shop (){
 	
 		if (choix == 1 && po>=10){
 			choix =0;
-			shurikens = 1;
+			arme = 1;
 			po = po-10;
 			printf ("Il vous reste %d pieces d'or sur vous\n", po);
 			printf ("Vous avez achete des shurikens\n");
@@ -64,7 +63,7 @@ int shop (){
 		}
 		if (choix == 3 && po>=10){
 			choix =0;
-			dague = 1;
+			arme = 1;
 			po = po-10;
 			printf ("Il vous reste %d pieces d'or sur vous\n", po);
 			printf ("Vous avez achete une dague\n");
@@ -111,7 +110,7 @@ int shop (){
 	
 		if (choix == 1 && po>=5){
 			choix =0;
-			shurikens = 1;
+			arme = 1;
 			po = po-5;
 			printf ("Il vous reste %d pieces d'or sur vous\n", po);
 			printf ("Vous avez achete des shurikens\n");
@@ -129,7 +128,7 @@ int shop (){
 		}
 		if (choix == 3 && po>=5){
 			choix =0;
-			dague = 1;
+			arme = 1;
 			po = po-5;
 			printf ("Il vous reste %d pieces d'or sur vous\n", po);
 			printf ("Vous avez achete une dague\n");
@@ -169,8 +168,16 @@ int rangUp (){
 	printf ("Bravo vous avez augmente votre rang\n");
 	rang = rang + 1;
 	printf ("Vous etes desormais rang %d\n", rang);
+	if (rang == 5){
+		printf ("Félicitation !!\n");
+		printf ("Vous avez attein le rang 5, vous pouvez desormais rejoindre les mercenaires\n");
+		printf ("La prochaine etape sera de monter les grades au sein des mercenaires.\n");
+		printf ("Merci d'avoir joue !\n");
+		exit (0);
+	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 int voyager(){
 	printf ("Dans quel village voulez vous continuer votre aventure?\n");
 	printf ("\n");
@@ -180,11 +187,13 @@ int voyager(){
 	printf ("\n");
 	scanf ("%d",&choix);
 	printf ("\n");
+	
+	
 }
 
 
 
-
+// quetes Run'Ku
 int queteAnimalCompagnie (){
 	printf("Vous vous rendez en direction de la riviere car c'est la qu'il a ete apercu la derniere fois\n");
 	printf("Une fois sur les lieux, vous apercevez des traces de pas qui ont l'air quand meme tres grosse\n");
@@ -197,14 +206,14 @@ int queteAnimalCompagnie (){
 	scanf ("%d",&choix);
 	printf ("\n");
 	
-	if ( choix == 1 && dague == 1){
+	if ( choix == 1 && arme == 1){
 		choix =0;
 		printf("Le tigre vous saute dessus et vous le poignardez juste avant qu'il ne vous dévore\n");
 		printf("Malheureusement quelqu'un vous a vu et va voir la veille dame pour tout lui raconter\n");
 		printf("Votre reputation est salie, vous ne serez jamais un mercenaire.\n");
 	}
 	
-	if ( choix == 1 && dague == 0){
+	if ( choix == 1 && arme == 0){
 		choix =0;
 		printf("Le tigre vous saute dessus et vous dévore\n");
 		mort();
@@ -227,7 +236,7 @@ int queteOurs(){
 	scanf ("%d",&choix);
 	printf ("\n");
 	
-	if ( choix == 1 && dague == 0 ){
+	if ( choix == 1 && arme == 0 ){
 		choix =0;
 		printf("Vous arrivez a tuer des ours a mains nus vous ?\n");
 		printf("L'ours brun est un animal pouvant atteindre 600kg\n");
@@ -235,9 +244,9 @@ int queteOurs(){
 		printf("Au moins vous aurez appris le poids d'un ours brun.\n");
 	}
 	
-	if ( choix == 1 && dague == 1 ){
+	if ( choix == 1 && arme == 1 ){
 		choix =0;
-		printf("Vous vous approchez discretement de l'animal et lui plantez votre dague dans la tete\n");
+		printf("Vous vous approchez discretement de l'animal et lui plantez votre arme dans la tete\n");
 		printf("Quel courage !\n");
 		rangUp();
 		oursTue = 1;
@@ -285,6 +294,7 @@ int teteBrigantsPlus(){
 		rangUp();
 	}
 }
+
 
 
 
@@ -348,7 +358,7 @@ int main(){
 			printf ("Il s'approche de vous et vous dit:\n");
 			printf ("J'ai aussi ete mercenaire junior et je sais a quel point c'est dur.\n");
 			printf ("Tiens prend cette dague, elle pourra te sortir de mauvaise situation.\n");
-			dague = 1;
+			arme = 1;
 			printf ("Vous prenez la dague et le voyageur part sans que vous ayez le temps de le remercier.\n");
 			printf ("Vous etes intrigue mais vous continuez votre route.\n");
 			printf ("Vous arrivez au village de Run'fu.\n");
@@ -425,15 +435,15 @@ int main(){
 			printf ("Vous vous approchez en criant pour arreter les agresseurs\n");
 			printf ("En vous voyant arriver, ils decident de s'en prendre a vous.\n");
 			aiderEnfant = 1;
-				if ( dague == 0 ){
+				if ( arme == 0 ){
 					printf ("Vous vous engagez dans un combat qui semble complexe\n");
 					printf ("Pendant que vous tenez 2 des agresseurs, le troisieme vous frappe a la tete et vous assomme\n");
 					mort();
 				}
 				
-				if ( dague == 1 ){
+				if ( arme == 1 ){
 					printf ("Vous vous engagez dans un combat qui semble complexe\n");
-					printf ("Vous parvenez a couper au bras un des agresseurs grace a votre dague\n");
+					printf ("Vous parvenez a couper au bras un des agresseurs grace a votre arme\n");
 					printf ("Les agresseurs sentent qu'ils ne feront pas le poids et decide de s'enfuire.\n");
 					printf ("\n");
 					printf ("Les poursuivre (1)\n");
@@ -861,6 +871,54 @@ int main(){
 	// ------------------------------------------------------------------ FUN'HU ----------------------------------------------------------------------
 	if ( choix == 2 ){
 		printf ("Vous partez donc en direction de Fun'hu, vers l'ocean.\n");
+		printf ("La legende raconte que dans les eaux proches de ce village sont maudites\n");
+		printf ("Les personnes n'osent se rendre dans ces eaux car ils ont peur d'y rester \n");
+		printf ("Vous arrivez dans le village, il semble completement vide\n");
+		printf ("Pas une personne en vue, pas un bruit.\n");
+		printf ("A defaut d'avoir des quetes, peut etre que vous pourriez découvrir se qui se passe?\n");
+		printf ("Enqueter sur le village (1)\n");
+		printf ("Changer de village (2)\n");
+		printf ("\n");
+		scanf ("%d",&choix);
+		printf ("\n");
+		
+		if (choix == 1){
+			choix  = 0;
+			printf ("Vous entrez donc dans le village\n");
+			printf ("Vous sentez une pression des l'instant ou vous mettez le pied dans la ville\n");
+			printf ("Vous voyez au loin un vieux puits\n");
+			printf ("Vous savez qu'il y a l'ocean tres proche du village\n");
+			printf ("D'un autre cote, il y a une colline qui touche le village, peut etre pourrez vous avoir une vue d'ensemble.\n");
+			printf ("Aller vers le puits (1)\n");
+			printf ("Aller vers l'eau (2)\n");
+			printf ("Aller a la colline (3)\n");
+			printf ("\n");
+			scanf ("%d",&choix);
+			printf ("\n");
+			
+			if (choix == 2){
+				choix =0;
+					
+			}
+			
+			if (choix == 2){
+				choix =0;
+				
+		
+			}
+			
+			if (choix == 2){
+				=0;
+			
+		
+			}
+		}
+		
+		if (choix == 2){
+			choix =0;
+			voyager();
+		
+		}
 	}
 	
 	
