@@ -22,6 +22,8 @@ int epee = 0;
 int teteBrigant = 0;
 int aiderEnfant =0;
 int oursTue = 0;
+int queteBrigantsEnd = 0;
+int queteOursEnd = 0;
 char mdp[50];
 char mdpJuste2[50] = "mellon";
 char mdpJuste[50] = "Mellon";
@@ -220,19 +222,22 @@ int queteAnimalCompagnie (){
 		printf("Le tigre vous saute dessus et vous le poignardez juste avant qu'il ne vous dévore\n");
 		printf("Malheureusement quelqu'un vous a vu et va voir la veille dame pour tout lui raconter\n");
 		printf("Votre reputation est salie, vous ne serez jamais un mercenaire.\n");
+		exit(0);
 	}
 	
 	if ( choix == 1 && arme == 0){
 		choix =0;
-		printf("Le tigre vous saute dessus et vous dévore\n");
+		printf("Le tigre vous saute dessus et vous devore\n");
 		mort();
+		exit(0);
 	}
 	if ( choix == 2 ){
 		choix =0;
 		printf ("Malheureusement les tigres ont une vitesse de pointe de 65km/h");
-		printf("Le tigre vous saute dessus et vous dévore\n");
+		printf("Le tigre vous saute dessus et vous devore\n");
 		mort();
 		printf("Au moins vous aurez appris la vitesse de pointe d'un tigre.\n");
+		exit(0);
 	}
 }
 
@@ -259,6 +264,7 @@ int queteOurs(){
 		printf("Quel courage !\n");
 		rangUp();
 		oursTue = 1;
+		queteOursEnd = 1;
 	}
 	
 	if ( choix == 2 ){
@@ -294,6 +300,7 @@ int teteBrigantsPlus(){
 		choix =0;
 		printf ("Vous lui coupez la tete et la ramenez au village\n");
 		teteBrigant = 1;
+		queteBrigantsEnd = 1;
 		rangUp();
 	}
 
@@ -301,6 +308,7 @@ int teteBrigantsPlus(){
 		choix =0;
 		printf ("Vous laissez le chef des brigants mort et rentrez au village\n");
 		rangUp();
+		queteBrigantsEnd = 1;
 	}
 }
 
@@ -842,6 +850,7 @@ int main(){
 						printf ("Vous vous engagez dans un combat qui semble complexe\n");
 						printf ("Pendant que vous tenez 2 des agresseurs, le troisieme vous frappe a la tete et vous assomme\n");
 						mort();
+						exit(0);
 					}
 					
 					if ( arme == 1 ){
@@ -893,10 +902,9 @@ int main(){
 					printf ("\n");
 				
 					if ( choix == 1 && rang<2){
-							choix =0;
-							printf ("Vous commencez a les poursuivre\n");
-							teteBrigantsMoins();
-							
+						choix =0;
+						printf ("Vous commencez a les poursuivre\n");
+						teteBrigantsMoins();
 					}
 						
 					if ( choix == 1 && rang>=2){
@@ -912,7 +920,7 @@ int main(){
 						printf ("Vous n'avez pas bouge\n");
 						printf ("Vous n'etes visiblement pas pres pour l'aventure et la realite vous reviens en pleine figure\n");
 						printf ("Peut etre que la prochaine fois vous ferez de meilleurs choix\n");
-					
+						exit(0);
 					}
 				}
 
@@ -1279,52 +1287,37 @@ int main(){
 						}
 					}
 				
-					//Quete quand on a tué les brigants
-					if ( teteBrigant == 1){
-						printf ("Sur le panneau des quetes il reste l'animal de companie a retrouver (1)\n");
-						printf ("ou l'ours a chasser de sa caverne (2)\n");
-						printf ("\n");
-						scanf ("%d",&choix);
-						printf ("\n");
-						
-						if (choix == 1){
-							choix =0;
-							queteAnimalCompagnie();
-						}
-						
-						if (choix == 2){
-							choix =0;
-							queteOurs();
-							printf ("Vous etes de retour en ville\n");
-							if ( oursTue == 1){
-								printf ("vous etes accueillis par le chef du village\n");
-								printf ("Vous lui annoncez que l'ours n'embetera plus le village\n");
-								printf ("Le chef saute de joie et vous donne les 15 pieces d'or\n");
-								po = po +15;
-								printf ("Vous avez %d pieces d'or sur vous\n",po);
-								printf ("Que faire maintenant ?");
-								printf ("Aller au centre ville pour allez sauver l'animal de la vieille dame (1)\n");
-								printf ("Aller voir le marchant (2)\n");
-								printf ("Partir de cette ville pour aller a une autre (3)\n");
-								printf ("\n");
-								scanf ("%d",&choix);
-								printf ("\n");
-								
-								if ( choix == 1){
-									choix = 0;
-									queteAnimalCompagnie();
-								}
-								
-								if ( choix == 2){
-									choix = 0;
-									shop();
+						//Quete quand on a tué les brigants
+						if ( teteBrigant == 1 && queteBrigantsEnd == 0){
+							printf ("Sur le panneau des quetes il reste l'animal de companie a retrouver (1)\n");
+							printf ("ou l'ours a chasser de sa caverne (2)\n");
+							printf ("\n");
+							scanf ("%d",&choix);
+							printf ("\n");
+							
+							if (choix == 1){
+								choix =0;
+								queteAnimalCompagnie();
+							}
+							
+							if (choix == 2){
+								choix =0;
+								queteOurs();
+								printf ("Vous etes de retour en ville\n");
+								if ( oursTue == 1){
+									printf ("vous etes accueillis par le chef du village\n");
+									printf ("Vous lui annoncez que l'ours n'embetera plus le village\n");
+									printf ("Le chef saute de joie et vous donne les 15 pieces d'or\n");
+									po = po +15;
+									printf ("Vous avez %d pieces d'or sur vous\n",po);
 									printf ("Que faire maintenant ?");
 									printf ("Aller au centre ville pour allez sauver l'animal de la vieille dame (1)\n");
-									printf ("Partir de cette ville pour aller a une autre (2)\n");
+									printf ("Aller voir le marchant (2)\n");
+									printf ("Partir de cette ville pour aller a une autre (3)\n");
 									printf ("\n");
 									scanf ("%d",&choix);
 									printf ("\n");
-										
+									
 									if ( choix == 1){
 										choix = 0;
 										queteAnimalCompagnie();
@@ -1332,20 +1325,30 @@ int main(){
 									
 									if ( choix == 2){
 										choix = 0;
-										voyager();
-									}
-								
-									if ( choix == 3){
-										choix = 0;
-										voyager();
+										shop();
+										printf ("Que faire maintenant ?");
+										printf ("Aller au centre ville pour allez sauver l'animal de la vieille dame (1)\n");
+										printf ("Partir de cette ville pour aller a une autre (2)\n");
+										printf ("\n");
+										scanf ("%d",&choix);
+										printf ("\n");
+											
+										if ( choix == 1){
+											choix = 0;
+											queteAnimalCompagnie();
+										}
 										
+										if ( choix == 2){
+											choix = 0;
+											voyager();
+										}
+									
+									
 									}
-								
 								}
 							}
+							
 						}
-						
-					}
 					
 				}
 
