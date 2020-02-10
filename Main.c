@@ -81,10 +81,10 @@ int shop (){
 			choix = 5;
 		}
 	
-		if (choix == 4 && po>=100){
+		if (choix == 4 && po>=1000){
 			choix =0;
 			potion = 1;
-			po = po-100;
+			po = po-1000;
 			printf ("Il vous reste %d pieces d'or sur vous\n", po);
 			printf ("Vous avez achete une potion de la deuxieme chance\n");
 			printf ("Elle vous sera utile si vous faite un mauvais choix\n");
@@ -312,7 +312,7 @@ int queteChose(){
 	printf ("Naturellement vous vous y aventurez car votre ame d'explorateur prend le dessus !\n");
 	printf ("Vous entrez donc dans cette grotte\n");
 	printf ("Il fait tres sombre et vous entendez des bruits etranges derriere vous\n");
-	printf ("Quelque chose semble vous avoir suivit et vous ne pouvez plus sortir\n");
+	printf ("Quelque chose semble vous avoir suivi et vous ne pouvez plus sortir\n");
 	printf ("Continuez d'avancer sans faire de bruit (1)\n");
 	printf ("Courir le plus vite possible et vous enfoncer dans la grotte (2)\n");
 	printf ("Vous retourner pour faire face a cette chose (3)\n");
@@ -576,7 +576,7 @@ int queteChose(){
 	if (choix == 2){
 		choix =0;
 		printf ("Vous commencez a courir a toute vitesse\n");
-		printf ("Seulement vous faite encore plus de bruit et vous etes devore apres quelques metres\n");
+		printf ("Seulement vous faites encore plus de bruit et vous etes devore apres quelques metres\n");
 		mort();
 	}
 
@@ -591,18 +591,18 @@ int queteChose(){
 
 int queteEaux (){
 	printf ("Vous decidez d'aller vers l'ocean\n");
-	printf ("Pendant votre trajet vous entendez %s !! Et oh %s !\n", nom);
+	printf ("Pendant votre trajet vous entendez %s !! Et oh %s !\n", nom, nom);
 	printf ("Vous vous retournez et vous voyez Kevin votre ami d'enfance !\n");
 	printf ("Il s'approche de vous et vous dit\n");
 	printf ("Ecoutes %s, j'ai bien reflechi et je ne veux plus etre un mercenaire, c'est trop dur\n", nom);
-	printf ("J'ai essayer de comprendre ce qui se passait dans cette ville, mais rien a faire je ne suis pas fait pour ca\n");
-	printf ("Tiens prends mon epee, elle te sera plus utile qu'a moi, j'abbandonne, adieu\n");
+	printf ("J'ai essaye de comprendre ce qu'il se passait dans cette ville, mais rien a faire je ne suis pas fait pour ca\n");
+	printf ("Tiens prends mon epee, elle te sera plus utile qu'a moi, j'abandonne, adieu\n");
 	epee = 1;
 	printf ("Il s'en va avant que vous ne lui disiez un mot\n");
 	printf ("Adieu Kevin\n");
 	printf ("Vous arrivez sur la plage\n");
 	printf ("Retourner au village (1)\n");
-	printf ("Marcher le long de la plage a la recherche d'indice (2)\n");
+	printf ("Marcher le long de la plage a la recherche d'indices (2)\n");
 	printf ("\n");
 	scanf ("%d",&choix);
 	printf ("\n");
@@ -655,6 +655,7 @@ int queteEaux (){
 					printf ("Apres j'ai pas promis de vous dire a quoi il servait..\n");
 					printf ("Adieu chanceux !\n");
 					printf ("Vous retournez au village\n");
+					rangUp();
 				}
 				
 				if (numJoueur < numSorcier){
@@ -833,10 +834,10 @@ int main(){
 				
 				//-----------------Enfant sauvé-----------------
 				if ( choix == 1 ){
-				choix =0;
-				printf ("Vous vous approchez en criant pour arreter les agresseurs\n");
-				printf ("En vous voyant arriver, ils decident de s'en prendre a vous.\n");
-				aiderEnfant = 1;
+					choix =0;
+					printf ("Vous vous approchez en criant pour arreter les agresseurs\n");
+					printf ("En vous voyant arriver, ils decident de s'en prendre a vous.\n");
+					aiderEnfant = 1;
 					if ( arme == 0 ){
 						printf ("Vous vous engagez dans un combat qui semble complexe\n");
 						printf ("Pendant que vous tenez 2 des agresseurs, le troisieme vous frappe a la tete et vous assomme\n");
@@ -882,14 +883,14 @@ int main(){
 				}
 				//-----------------Enfant mort-----------------
 				if ( choix == 2 ){
-				choix =0;
-				printf ("L'enfant se fait massacrer sous vos yeux\n");
-				printf ("Il laisse le corps du garcon sur le sol et partent en courant\n");
-				printf ("Les poursuivre (1)\n");
-				printf ("Les laisser (2)\n");
-				printf ("\n");
-				scanf ("%d",&choix);
-				printf ("\n");
+					choix =0;
+					printf ("L'enfant se fait massacrer sous vos yeux\n");
+					printf ("Il laisse le corps du garcon sur le sol et partent en courant\n");
+					printf ("Les poursuivre (1)\n");
+					printf ("Les laisser (2)\n");
+					printf ("\n");
+					scanf ("%d",&choix);
+					printf ("\n");
 				
 					if ( choix == 1 && rang<2){
 							choix =0;
@@ -1094,21 +1095,259 @@ int main(){
 								}
 								
 								if ( choix == 2){
-								choix = 0;
-								voyager();
-							}
+									choix = 0;
+									voyager();
+								}
 							
-							if ( choix == 3){
+								if ( choix == 3){
+									choix = 0;
+									voyager();
+									
+								}
+							
+							}
+						}
+					}
+					
+				}
+				
+				
+				//Quand on a aider l'enfant 
+				else if (teteBrigant == 0  && oursTue == 0){
+					printf ("Vous vous rendez donc au centre du village\n");
+					printf ("Vous regardez le panneau et vous remarquez qu'il y a 3 quetes\n");
+					printf ("\n");
+					printf ("La premiere parle d'aller chercher l'animal de companie d'une veille dame (1)\n");
+					printf ("Cela vous rapportera 5 pieces d'or\n");
+					printf ("La deuxieme demande de chasser un ours de sa caverne (2)\n");
+					printf ("Cela vous rapportera 15 pieces d'or\n");
+					printf ("La troisieme veut que vous recuperiez la tete d'un brigant qui est enfouit dans la foret(3)\n");
+					printf ("Cela vous rapportera 20 pieces d'or\n");
+					printf ("Laquelle voulez vous choisir ?\n");
+					
+					printf ("\n");
+					scanf ("%d",&choix);
+					printf ("\n");
+					
+					//-----------------Animal de compagnie-----------------
+					if ( choix == 1 ){
+						choix =0;
+						queteAnimalCompagnie();
+					}
+					
+					//-----------------Ours-----------------
+					if ( choix == 2 ){
+						choix =0;
+						queteOurs();
+						
+					}
+					
+					//-----------------Brigants-----------------
+					if ( choix == 3 && rang<2){
+						choix =0;
+						teteBrigantsMoins ();
+						
+					}
+						
+					if ( choix == 1 && rang>=2){
+						choix =0;
+						teteBrigantsPlus();
+					}
+					printf ("Vous etes de retour en ville\n");
+			
+					//-----------------Recompense-----------------
+					if ( teteBrigant == 1){
+						printf ("vous etes accueillis par le chef du village\n");
+						printf ("Vous lui montrez la tete du brigant\n");
+						printf ("Le chef saute de joie et vous donne les 20 pieces d'or\n");
+						po = po +20;
+						printf ("Vous avez %d pieces d'or sur vous\n",po);
+					}
+					
+					if ( oursTue == 1){
+						printf ("vous etes accueillis par le chef du village\n");
+						printf ("Vous lui annoncez que l'ours n'embetera plus le village\n");
+						printf ("Le chef saute de joie et vous donne les 15 pieces d'or\n");
+						po = po +15;
+						printf ("Vous avez %d pieces d'or sur vous\n",po);
+					}
+					
+					printf ("Aller au centre ville a l'endroit des quetes (1)\n");
+					printf ("Aller voir le marchant (2)\n");
+					printf ("Partir de cette ville pour aller a une autre (3)\n");
+					printf ("\n");
+					scanf ("%d",&choix);
+					printf ("\n");
+					
+					////////////////
+					//-----------------Aller au centre ville-----------------
+					if ( choix == 1 ){
+						choix =0;
+						printf ("Vous vous rendez donc au centre ville vers le panneau des quetes\n");
+				
+						// Quetes quand on a plus l'ours 
+						if ( oursTue == 1){
+
+							printf ("Sur le panneau des quetes il reste l'animal de companie a retrouver (1)\n");
+							printf ("ou la tete du brigant a aller chercher dans la foret (2)\n");
+							printf ("\n");
+							scanf ("%d",&choix);
+							printf ("\n");
+				
+						//-----------------Animal de compagnie 2-----------------
+							if (choix == 1){
 								choix = 0;
-								voyager();
-								
+								queteAnimalCompagnie();
+							}
+						
+						//-----------------Brigants mort-----------------------------
+							if (choix == 2 && rang<2){
+								choix = 0;
+								teteBrigantsMoins();
+							}
+						
+							//-----------------Brigants tue-----------------------------
+							if (choix == 2 && rang>=2){
+								choix = 0;
+								teteBrigantsPlus();
+								printf ("Vous etes de retour en ville\n");
+								printf ("vous etes accueillis par le chef du village\n");
+								printf ("Vous lui montrez la tete du brigant\n");
+								printf ("Le chef saute de joie et vous donne les 20 pieces d'or\n");
+								po = po +20;
+								printf ("Vous avez %d pieces d'or sur vous\n",po);
+							}	
+			
+			
+							printf ("Aller au centre ville a l'endroit des quetes (1)\n");
+							printf ("Aller voir le marchant (2)\n");
+							printf ("Partir de cette ville pour aller a une autre (3)\n");
+							printf ("\n");
+							scanf ("%d",&choix);
+							printf ("\n");
+						
+							if ( choix == 1 ){
+								choix =0;
+								printf ("Vous vous rendez donc au centre ville vers le panneau des quetes\n");
+								printf ("Il ne vous reste plus que sauver l'animal de compagnie de la vieille dame\n");
+								printf ("partir pour la faire (1)\n");
+								printf ("Laisser tomber et changer de ville (2)\n");
+								printf ("\n");
+								scanf ("%d",&choix);
+								printf ("\n");
+							
+								if (choix == 1){
+									choix = 0;
+									queteAnimalCompagnie();
+								}
+							
+								if (choix == 2){
+									choix = 0;
+									voyager();
+								}
 							}
 							
 						}
+					
+						//shop
+						if (choix ==2 ){
+							choix =0;
+							shop();
+							printf ("Que faire maintenant ?");
+							printf ("Aller au centre ville pour allez sauver l'animal de la vieille dame (1)\n");
+							printf ("Partir de cette ville pour aller a une autre (2)\n");
+							printf ("\n");
+							scanf ("%d",&choix);
+							printf ("\n");
+							
+							if ( choix == 1){
+								choix = 0;
+								queteAnimalCompagnie();
+							}
+							if ( choix == 3){
+								choix = 0;
+								voyager();
+							
+							}
+							
+						}
+					
+						// voyager
+						if ( choix == 3){
+							choix = 0;
+							voyager();
+						}
 					}
+				
+					//Quete quand on a tué les brigants
+					if ( teteBrigant == 1){
+						printf ("Sur le panneau des quetes il reste l'animal de companie a retrouver (1)\n");
+						printf ("ou l'ours a chasser de sa caverne (2)\n");
+						printf ("\n");
+						scanf ("%d",&choix);
+						printf ("\n");
+						
+						if (choix == 1){
+							choix =0;
+							queteAnimalCompagnie();
+						}
+						
+						if (choix == 2){
+							choix =0;
+							queteOurs();
+							printf ("Vous etes de retour en ville\n");
+							if ( oursTue == 1){
+								printf ("vous etes accueillis par le chef du village\n");
+								printf ("Vous lui annoncez que l'ours n'embetera plus le village\n");
+								printf ("Le chef saute de joie et vous donne les 15 pieces d'or\n");
+								po = po +15;
+								printf ("Vous avez %d pieces d'or sur vous\n",po);
+								printf ("Que faire maintenant ?");
+								printf ("Aller au centre ville pour allez sauver l'animal de la vieille dame (1)\n");
+								printf ("Aller voir le marchant (2)\n");
+								printf ("Partir de cette ville pour aller a une autre (3)\n");
+								printf ("\n");
+								scanf ("%d",&choix);
+								printf ("\n");
+								
+								if ( choix == 1){
+									choix = 0;
+									queteAnimalCompagnie();
+								}
+								
+								if ( choix == 2){
+									choix = 0;
+									shop();
+									printf ("Que faire maintenant ?");
+									printf ("Aller au centre ville pour allez sauver l'animal de la vieille dame (1)\n");
+									printf ("Partir de cette ville pour aller a une autre (2)\n");
+									printf ("\n");
+									scanf ("%d",&choix);
+									printf ("\n");
+										
+									if ( choix == 1){
+										choix = 0;
+										queteAnimalCompagnie();
+									}
+									
+									if ( choix == 2){
+										choix = 0;
+										voyager();
+									}
+								
+									if ( choix == 3){
+										choix = 0;
+										voyager();
+										
+									}
+								
+								}
+							}
+						}
+						
 					}
+					
 				}
-			}
 
 			//-----------------Marchant 2-----------------
 			if ( choix == 2 ){
@@ -1242,8 +1481,9 @@ int main(){
 								}
 								
 								if ( choix == 2){
-								choix = 0;
-								voyager();
+									choix = 0;
+									voyager();
+								}
 							}
 							
 							if ( choix == 3){
@@ -1274,11 +1514,11 @@ int main(){
 		if ( choix == 2 ){
 			choix = 0;
 			printf ("Vous partez donc en direction de Fun'hu, vers l'ocean.\n");
-			printf ("La legende raconte que dans les eaux proches de ce village sont maudites\n");
+			printf ("La legende raconte que les eaux proches de ce village sont maudites\n");
 			printf ("Les personnes n'osent se rendre dans ces eaux car ils ont peur d'y rester \n");
 			printf ("Vous arrivez dans le village, il semble completement vide\n");
 			printf ("Pas une personne en vue, pas un bruit.\n");
-			printf ("A defaut d'avoir des quetes, peut etre que vous pourriez découvrir ce qui se passe?\n");
+			printf ("A defaut d'avoir des quetes, peut etre que vous pourriez decouvrir ce qu'il se passe?\n");
 			printf ("Enqueter sur le village (1)\n");
 			printf ("Changer de village (2)\n");
 			printf ("\n");
@@ -1304,7 +1544,7 @@ int main(){
 					printf ("Vous decidez de vous orienter vers le puits\n");
 					printf ("une fois a proximite, vous semblez entendre des voix dans ce dernier\n");
 					printf ("Vous vous approchez et vous entendez\n");
-					printf ("%s, %s \n", nom);
+					printf ("%s, %s \n", nom,nom);
 					printf ("Intrigue vous vous approchez encore plus\n");
 					printf ("La voix vous dit\n");
 					printf ("%s, je suis l'esprit d'un villageois qui a ete enferme dans ce puits\n");
@@ -1334,9 +1574,25 @@ int main(){
 						if (numJoueur > numSorcier){
 							printf ("Et bien vous avez gagne ! Bravo \n");
 							printf ("Le mot de passe est Mellon\n");
-							printf ("Apres j'ai pas promis de vous dire a quoi il servait..\n");
+							printf ("Apres je n'ai jamais promis de vous dire a quoi il servait..\n");
 							printf ("Adieu chanceux !\n");
 							printf ("Vous retournez au village\n");
+							rangUp();
+							printf ("Allez proche de l'ocean (1)\n");
+							printf ("Aller vers la colline (2)\n");
+							printf ("\n");
+							scanf ("%d",&choix);
+							printf ("\n");
+							 
+							if (choix == 1) {
+								choix =0;
+								queteEaux();
+							}
+							
+							if (choix == 2) {
+								choix =0;
+								queteChose();
+							}
 						}
 						
 						if (numJoueur < numSorcier){
