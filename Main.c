@@ -222,14 +222,14 @@ int queteAnimalCompagnie (){
 		printf("Le tigre vous saute dessus et vous le poignardez juste avant qu'il ne vous dévore\n");
 		printf("Malheureusement quelqu'un vous a vu et va voir la veille dame pour tout lui raconter\n");
 		printf("Votre reputation est salie, vous ne serez jamais un mercenaire.\n");
-		exit(0);
+		mort();
 	}
 	
 	if ( choix == 1 && arme == 0){
 		choix =0;
 		printf("Le tigre vous saute dessus et vous devore\n");
 		mort();
-		exit(0);
+		
 	}
 	if ( choix == 2 ){
 		choix =0;
@@ -237,7 +237,6 @@ int queteAnimalCompagnie (){
 		printf("Le tigre vous saute dessus et vous devore\n");
 		mort();
 		printf("Au moins vous aurez appris la vitesse de pointe d'un tigre.\n");
-		exit(0);
 	}
 }
 
