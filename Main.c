@@ -357,8 +357,9 @@ int queteChose(){
 			printf ("On dirait l'entree de la Moria dans le seigneur des anneaux...\n");
 			printf ("On peut peut etre tenter un mot de passe \n");
 			printf ("\n");
-			scanf ("%s",mdp);
+			scanf("%s",mdp);
 			printf ("\n");
+			
 		
 			if ( strcmp (mdp, mdpJuste) == 0){
 				printf ("Incroyable ca a marche !! Hum Hum je veux dire, vous voyez je le savais \n");
@@ -375,6 +376,7 @@ int queteChose(){
 				scanf ("%d",choix);
 				printf ("\n");
 				
+				
 				if (choix == 1){
 					choix =0;
 					printf ("Vous vous precipitez vers les habitants qui commence a vous acclamer\n");
@@ -383,7 +385,7 @@ int queteChose(){
 					printf ("Elle vous devore sur place sous le regard effraye des habitants\n");
 					mort();
 				}
-				
+
 				if (choix == 2){
 					choix =0;
 					printf ("Vous attendez tapis dans l'ombre et vous voyez que la chose arrive vers les habitants\n");
@@ -394,6 +396,11 @@ int queteChose(){
 					printf ("l'attaquer dans le dos (1) \n");
 					printf ("Crier pour detourner son attention (2)\n");
 					printf ("Continuer de regarder (3)\n");
+					printf ("\n");
+					scanf ("%d",choix);
+					printf ("\n");
+					
+					
 					
 					if (choix == 1 && epee == 1){
 						choix =0;
@@ -489,6 +496,10 @@ int queteChose(){
 					printf ("l'attaquer dans le dos (1) \n");
 					printf ("Crier pour detourner son attention (2)\n");
 					printf ("Continuer de regarder (3)\n");
+					printf ("\n");
+					scanf ("%d",choix);
+					printf ("\n");
+					
 					
 					if (choix == 1 && epee == 1){
 						choix =0;
@@ -501,7 +512,6 @@ int queteChose(){
 					
 					if (choix == 1 && arme == 1){
 						choix =0;
-						choseTue = 1;
 						printf ("Vous sautez sur la chose depuis votre hauteur pour l'attaquer dans le dos \n");
 						printf ("Vous arrivez a blesser la chose dans le dos\n");
 						printf ("Elle pousse un cri de douleur puit un second de rage !\n");
@@ -614,6 +624,7 @@ int queteEaux (){
 	epee = 1;
 	printf ("Il s'en va avant que vous ne lui disiez un mot\n");
 	printf ("Adieu Kevin\n");
+	rangUp();
 	printf ("Vous arrivez sur la plage\n");
 	printf ("Retourner au village (1)\n");
 	printf ("Marcher le long de la plage a la recherche d'indices (2)\n");
@@ -722,7 +733,8 @@ int queteEaux (){
 
 int main(){
 // ------------------------------------------------------------------INRODUCTION ----------------------------------------------------------------------
-
+	srand(time(NULL));
+	
 	printf ("Vous faites partie d'un clan de mercenaires.\n");
 	printf ("Ce dernier, meme s'il est repute pour faire le sale boulot,\n");
 	printf ("peut aussi faire des petits services pour les villages voisins \n");
@@ -2302,7 +2314,7 @@ int main(){
 					
 					if (choix == 1){
 						choix =0;
-						numSorcier = ((rand()%100)+1);
+						numSorcier = ((rand()%50)+1);
 						numJoueur = ((rand()%100)+1);
 						
 						printf ("Tres bien, j'aime cette mentalite !\n");
@@ -2320,6 +2332,7 @@ int main(){
 							rangUp();
 							printf ("Allez proche de l'ocean (1)\n");
 							printf ("Aller vers la colline (2)\n");
+							printf ("Changer de village (3)\n");
 							printf ("\n");
 							scanf ("%d",&choix);
 							printf ("\n");
@@ -2332,6 +2345,11 @@ int main(){
 							if (choix == 2) {
 								choix =0;
 								queteChose();
+							}
+							
+							if (choix == 3) {
+								choix =0;
+								voyager();
 							}
 						}
 						
@@ -2349,6 +2367,8 @@ int main(){
 						printf ("Vous retournez au village \n");
 						printf ("Aller vers l'eau (1)\n");
 						printf ("Aller a la colline (2)\n");
+						printf ("Changer de village (3)\n");
+						
 						
 						if (choix == 1){
 							choix = 0;
@@ -2358,6 +2378,11 @@ int main(){
 						if (choix == 2){
 							choix = 0;
 							queteChose();
+						}
+						
+						if (choix == 3) {
+							choix =0;
+							voyager();
 						}
 					}
 				}
